@@ -1,21 +1,14 @@
-import { Container, Box } from "@mui/material";
+import { Container, Box, ButtonGroup, ListItemButton } from "@mui/material";
 import { values } from "mobx";
 import { LeftMenu } from "components";
+import { observer } from "mobx-react-lite";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
-const menuList = [
-  {
-    name: "회원관리",
-    path: "userMng/view",
-  },
-  {
-    name: "관리자관리",
-    path: "adminMng/view",
-  },
-  {
-    name: "메일관리",
-    path: "mailMng/view",
-  },
-];
+// TODO : LeftMenu로 변경해야함
+import React from "react";
+import _ from "lodash";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 function PageLayout({ className }) {
   return (
@@ -27,10 +20,20 @@ function PageLayout({ className }) {
     >
       <Box display="flex" sx={{ height: "100%" }}>
         {/* 좌측 메뉴 */}
-        {values(menuList).length ? <LeftMenu menuList={menuList} /> : null}
+        <LeftMenu />
+        <Scrollbars>
+          <Box
+            component="main"
+            sx={{
+              minHeight: "calc(100% - 51px)",
+              p: "10px 30px 100px",
+              bgcolor: "background.paper",
+            }}
+          ></Box>
+        </Scrollbars>
       </Box>
     </Container>
   );
 }
 
-export default PageLayout;
+export default observer(PageLayout);

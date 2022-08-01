@@ -1,12 +1,12 @@
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import BasicButtons from "../../components/input/Button";
+import { PageLayout } from "components";
 
 export const MainView = () => {
   return (
     <>
-      Home
-      {/*<Button variant="contained">Home Button</Button>*/}
-      <BasicButtons />
+      MAIN
+      <PageLayout />
     </>
   );
 };

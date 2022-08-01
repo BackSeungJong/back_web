@@ -3,11 +3,11 @@ import _ from "lodash";
 
 const StoreContext = createContext();
 
-const useStore = (namespace) => {
+export const useStore = (namespace) => {
   const store = useContext(StoreContext);
 
   if (namespace === undefined) {
-    throw Error("No-defined Store");
+    throw Error("useStore must be used within StoreProvider.");
   }
 
   if (_.isString(namespace)) {
