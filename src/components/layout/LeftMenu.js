@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { Blind } from "components";
 
-export function LeftMenu({ menuList }) {
+function LeftMenu({ menuList }) {
   return (
     <Box
       component="aside"
@@ -14,3 +14,5 @@ export function LeftMenu({ menuList }) {
     </Box>
   );
 }
+
+export default LeftMenu;

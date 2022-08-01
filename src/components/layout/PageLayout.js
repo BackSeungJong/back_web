@@ -1,5 +1,6 @@
 import { Container, Box } from "@mui/material";
 import { values } from "mobx";
+import { LeftMenu } from "components";
 
 const menuList = [
   {
@@ -16,7 +17,7 @@ const menuList = [
   },
 ];
 
-export function PageLayout({ className }) {
+function PageLayout({ className }) {
   return (
     <Container
       id="back-to-top-anchor"
@@ -31,3 +32,5 @@ export function PageLayout({ className }) {
     </Container>
   );
 }
+
+export default PageLayout;
