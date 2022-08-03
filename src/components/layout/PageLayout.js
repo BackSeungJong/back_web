@@ -1,24 +1,32 @@
 import { Container, Box, ButtonGroup, ListItemButton, Typography } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
 import { Header, LeftMenu } from 'components';
 import { observer } from 'mobx-react-lite';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStore } from 'store';
 import PropTypes from 'prop-types';
 import { values } from 'mobx';
+import _ from 'lodash';
 
 function PageLayout({ className }) {
   const { pathname, key } = useLocation();
   const { viewStore } = useStore();
-  const { setCurrentMenu, currentMenu, menuList } = viewStore;
+  // const { setCurrentMenu, currentMenu, menuList } = viewStore;
+  const { menuList } = viewStore;
+
+  const [currentMenu, setCurrentMenu] = useState();
 
   useEffect(() => {
-    if (pathname && values(menuList).length) {
-      // console.log('111', currentMenu);
-      setCurrentMenu(pathname);
-      // console.log('222', currentMenu);
-    }
+    _.filter(values(menuList), (menu) => {
+      const { linkUri } = menu;
+      const uri = linkUri.split('/');
+      const path = pathname.split('/');
+
+      if (uri[0] === path[1]) {
+        setCurrentMenu(menu);
+      }
+    });
   }, [pathname, values(menuList)]);
 
   return (
@@ -39,10 +47,11 @@ function PageLayout({ className }) {
         >
           {/* 타이틀 */}
           <Typography varient="h2" color="common.black" sx={{ fontSize: 24, mb: '20px' }}>
-            {/*{`${currentMenu.menuNm}`}*/}
-            test
+            {`${currentMenu?.menuNm}`}
           </Typography>
+
           {/* 컨텐츠 */}
+          <Outlet context={{}} />
         </Box>
       </Box>
     </Container>

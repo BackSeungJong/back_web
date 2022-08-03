@@ -10,8 +10,9 @@ import { Box, List, ListItemButton, ListItemText, ListSubheader } from '@mui/mat
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 function LeftMenu() {
-  const { menus } = useStore('viewStore');
+  const { menus, onClickMenu } = useStore('viewStore');
   const navigate = useNavigate();
+
   const handleClickMenu = (menu) => {
     const { linkUri } = menu;
     navigate(linkUri);
@@ -72,7 +73,6 @@ function LeftMenu() {
                   }}
                   divider={!isActive}
                   selected={isActive}
-                  //TODO : 이벤트 만들기
                   onClick={() => handleClickMenu(parentMenu)}
                 >
                   <ListItemText

@@ -110,6 +110,7 @@ export default types
     const onClickMenu = (currentMenu) => {
       const { menuFg } = currentMenu;
 
+      console.log('>>>');
       // 선택한 메뉴 외 비활성화
       _.filter(values(self.menuList), ['menuFg', menuFg]).forEach((menu) => {
         if (currentMenu === menu) {
@@ -123,11 +124,8 @@ export default types
     // 현재 메뉴 저장
     function setCurrentMenu(pathname) {
       const lastIndex = pathname.indexOf('/view') + 5;
-      console.log('111', lastIndex);
       const currentLinkUri = pathname.substring(0, lastIndex === -1 ? pathname.length : lastIndex);
-      console.log('222', currentLinkUri);
       const currentMenu = _.find(values(self.menuList), ['linkUri', currentLinkUri]);
-      console.log('333', currentMenu);
 
       values(self.menuList).forEach((menu) => {
         const { menuFg, menuId } = menu;
