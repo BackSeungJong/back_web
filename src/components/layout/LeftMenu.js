@@ -1,17 +1,21 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 
 import { useStore } from 'store';
-import { observer } from 'mobx-react-lite';
-import { Box, List, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
 import { Blind } from 'components';
-import { Scrollbars } from 'react-custom-scrollbars-2';
 
 import _ from 'lodash';
+import { Box, List, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 function LeftMenu() {
   const { menus } = useStore('viewStore');
-
-  const handleClickMenu = (menu) => {};
+  const navigate = useNavigate();
+  const handleClickMenu = (menu) => {
+    const { linkUri } = menu;
+    navigate(linkUri);
+  };
 
   return (
     <Box
@@ -19,7 +23,6 @@ function LeftMenu() {
       sx={{
         height: '100%',
         // borderRight: ({ palette }) => `1px solid ${palette.border.main}`,
-        borderRight: '1px solid',
       }}
     >
       <Blind>사이드바영역</Blind>
@@ -43,7 +46,7 @@ function LeftMenu() {
               m: 0,
             }}
           >
-            {'메인'}
+            {'메뉴'}
           </ListSubheader>
         }
       >
