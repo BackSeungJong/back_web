@@ -158,7 +158,7 @@ export default types
       destroy(self.dialog);
     }
 
-    const initLoad = flow(function* initLoad() {
+    const initLoad = () => {
       try {
         // if (_.isEmpty(values(self.codeList))) {
         //   // const { result, data } = yield self.root.axios.get('/common/codeList');
@@ -170,14 +170,12 @@ export default types
         //   }
         // }
 
-        if (_.isEmpty(values(self.menuList))) {
-          // const { result, data } = yield self.root.axios.get('/common/menuList');
-          const { result, data } = tmpMenuList;
-          if (result === 'OK') {
-            _.forEach(data, (menu) => {
-              self.menuList.put(menu);
-            });
-          }
+        // const { result, data } = yield self.root.axios.get('/common/menuList');
+        const { result, data } = tmpMenuList;
+        if (result === 'OK') {
+          _.forEach(data, (menu) => {
+            self.menuList.put(menu);
+          });
         }
 
         // 메일 템플릿 로드
@@ -186,23 +184,19 @@ export default types
         console.error(error);
         self.root.alert(error);
       }
-    });
+    };
 
     return {
       afterAttach() {
         when(
-          () => self.root.authStore.isAuthenticated,
           () => {
             self.initLoad();
-            reaction(
-              () => self.root.authStore.isAuthenticated,
-              (isAuthenticated) => {
-                if (isAuthenticated) {
-                  self.initLoad();
-                } else {
-                }
-              },
-            );
+          },
+          () => {
+            self.initLoad();
+            reaction(() => {
+              self.initLoad();
+            });
           },
         );
       },

@@ -1,7 +1,9 @@
-import { types } from "mobx-state-tree";
+import { types } from 'mobx-state-tree';
 
-import UserMngStore from "./UserMngStore";
+import ViewStore from './ViewStore';
+import UserMngStore from './UserMngStore';
 
-export default types.model("Store", {
+export default types.model('Store', {
+  viewStore: types.optional(ViewStore, {}),
   userStore: types.optional(UserMngStore, {}),
 });
