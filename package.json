@@ -12,6 +12,8 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "lodash": "^4.17.21",
+    "axios": "^0.26.1",
+    "axios-auth-refresh": "^3.3.1",
     "mobx": "^6.6.1",
     "mobx-react-lite": "^3.4.0",
     "mobx-state-tree": "^5.1.5",

@@ -1,4 +1,4 @@
-import { types, getParent } from 'mobx-state-tree';
+import { types, getParent, flow } from 'mobx-state-tree';
 import { User } from './model';
 
 const testUser = {
@@ -22,9 +22,14 @@ export default types
       self.list.clear();
     };
 
-    const onSearch = () => {
-      const tmp = [];
-      tmp.push(testUser);
-      self.list = tmp;
-    };
+    const onSearch = flow(function* onSearch(params) {
+      try {
+        const response = yield self.root.axios.get('/userMng/search');
+        console.log('response', response);
+      } catch (e) {
+        console.log('axios err', e);
+      }
+    });
+
+    return { onSearch, initList };
   });
