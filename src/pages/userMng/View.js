@@ -16,7 +16,7 @@ export const UserMngView = () => {
         <Forms methods={methods} onSubmit={(values) => onSearch({ ...values, pageNo: 1 })}>
           {/* 검색어 */}
           <FormItem label={'검색'}>
-            <Input name="searchInfo" width="w3" placeholder={'검색어'} autoFocus />
+            <Input width="w3" placeholder={'검색어'} autoFocus />
           </FormItem>
         </Forms>
       </Paper>
