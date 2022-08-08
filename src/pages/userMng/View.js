@@ -1,7 +1,7 @@
 import { useStore } from 'store';
 import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { FormItem, Forms, Input, Paper } from 'components';
+import { FormItem, Forms, Input, Paper, SearchButton } from 'components';
 
 export const UserMngView = () => {
   const { onSearch, initList } = useStore('userMngStore');
@@ -18,6 +18,7 @@ export const UserMngView = () => {
           <FormItem label={'검색'}>
             <Input width="w3" placeholder={'검색어'} autoFocus />
           </FormItem>
+          <SearchButton label={'조회'} />
         </Forms>
       </Paper>
     </>
