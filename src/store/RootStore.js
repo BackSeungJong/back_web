@@ -6,7 +6,7 @@ import UserMngStore from './UserMngStore';
 export default types
   .model('Store', {
     viewStore: types.optional(ViewStore, {}),
-    userStore: types.optional(UserMngStore, {}),
+    userMngStore: types.optional(UserMngStore, {}),
   })
   .views((self) => ({
     get axios() {
