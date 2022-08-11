@@ -35,6 +35,7 @@ const createInstance = () => {
   instance.get = (url, params, config) => {
     if (!_.isEmpty(params)) {
       const query = new URLSearchParams(removeEmptyField(params));
+      url = `${url}?${query.toString()}`;
     }
     return instance({
       method: 'get',
