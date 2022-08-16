@@ -17,8 +17,9 @@ export default types
 
     const onSearch = flow(function* onSearch(params) {
       try {
-        const response = yield self.root.axios.get('/userMng/search');
-        console.log('response', response);
+        console.log('111', params);
+        // const response = yield self.root.axios.get('/userMng/search');
+        // console.log('response', response);
       } catch (e) {
         console.log('axios err', e);
       }

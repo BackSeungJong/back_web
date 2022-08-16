@@ -12,15 +12,18 @@ export const UserMngView = () => {
   return (
     <>
       {/* 검색 영역 */}
+      {/*<Paper type="search" display="flex" direction="row" alignItems="flex-start">*/}
       <Paper type="search">
         <Forms methods={methods} onSubmit={(values) => onSearch({ ...values, pageNo: 1 })}>
           {/* 검색어 */}
           <FormItem label={'검색'}>
-            <Input width="w3" placeholder={'검색어'} autoFocus />
+            <Input name="searchInfo" width="w3" placeholder={'검색어'} autoFocus />
           </FormItem>
           <SearchButton label={'조회'} />
         </Forms>
       </Paper>
+
+      {/* 검색 결과 */}
     </>
   );
 };
