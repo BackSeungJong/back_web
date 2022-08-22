@@ -10,6 +10,6 @@ export default types
   })
   .views((self) => ({
     get axios() {
-      return getEnv(self).axios;
+      return getEnv(self).axios(self);
     },
   }));

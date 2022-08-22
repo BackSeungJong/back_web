@@ -1,10 +1,11 @@
 import { createContext, useContext } from 'react';
 import _ from 'lodash';
 import RootStore from './RootStore';
+import axios from 'lib/axios';
 
 const StoreContext = createContext();
 
-const store = RootStore.create({});
+const store = RootStore.create({}, { axios });
 
 export function StoreProvider({ children }) {
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;

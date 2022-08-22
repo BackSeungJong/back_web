@@ -22,7 +22,7 @@ const createInstance = () => {
   const source = axios.CancelToken.source();
 
   const instance = axios.create({
-    baseURL: 'http://localhost:8080/back',
+    baseURL: 'http://localhost:8080/api',
     timeout: 1000,
     headers: {
       Accept: 'application/json',
@@ -37,6 +37,7 @@ const createInstance = () => {
       const query = new URLSearchParams(removeEmptyField(params));
       url = `${url}?${query.toString()}`;
     }
+    console.log('url', url);
     return instance({
       method: 'get',
       url,
@@ -111,3 +112,5 @@ function axiosInstance(store) {
   // createAuthRefreshInterceptor(instance, (failedRequest) => refreshAuthLogic(store, failedRequest), { statusCodes: [401, 403] });
   return instance;
 }
+
+export default axiosInstance;
